@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Money Life
+	</title>
+	<meta charset="utf-8">
+	<!-- get scaling on the basis of viewport-->
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<!-- download font 'open sans' -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+
+    <!-- download jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+
+    <!-- download highcharts-->
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+	<!-- custom css and js -->	
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	<script src="js/data.js"></script>
+	<script src="js/app.js"></script>
+	
+</head>
+<body>
+	<div class="report-section">
+		<div class="report-heading">
+			<h1>Low Valuation, High Returns</h1>
+			<span>
+				if the starting PE is high , subsequent returns are usually low.<br/>
+				Conversely if the starting PE is low subsequent returns are high
+			</span>
+		</div>
+		<div class="action-center">
+			<div class="input-values">
+				<div class="show-inline">
+					<h3>NIFTY PE</h3>
+					<input type="text" name="" disabled="true" value="15">
+				</div>
+				<div class="show-inline">
+					<h3>5-YEAR RETURN</h3>
+					<input type="text" name="" disabled="true" value="25%">
+				</div>
+			</div>
+			<div class="input-field">
+				<input type="range" name="time-span" id="report-time-span"/>
+				<a href="javascript:void(0)" onclick="playGraph()" style="float:left">
+					<i class="fa fa-play"></i>
+					<i class="fa fa-pause"></i>
+					PLAY
+				</a>
+				<span class="">or</span>
+				<span class="info"> drag the slider</span>
+
+			</div>
+		</div>
+		<div class="report-visual">
+			<div class="show-inline">
+				<div class="" id="graph-1">
+				
+				</div>
+			</div>
+			<div class="show-inline">
+				<div id="graph-2">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
