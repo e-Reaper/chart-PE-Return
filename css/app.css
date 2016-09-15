@@ -1,3 +1,6 @@
+*{
+  font-family: 'open sans';
+}
 .report-heading{
 	text-align: center;
 }
@@ -7,10 +10,13 @@
 }
 .action-center,.report-heading,.report-visual{
 	width: 80%;
-	margin: 0 auto;
+	margin: 30px auto;
+  padding: 20px 0px;
 }
 .input-values{
-	width: 80%;
+  display: flex;
+  justify-content: space-between;
+	width: 60%;
 	margin: 0 auto;
 }
 .input-field{
@@ -21,6 +27,30 @@
 }
 .input-field>input{
 	width: 100%;
+}
+.controls{
+  display: flex;
+  justify-content: space-between;
+}
+.controls>span{
+  display: block;
+  padding: 5px;
+}
+.controls>.pauser{
+  display: none;
+}
+.controls>a{
+  transition: all ease 1s;
+  color:#7cb5ec;
+  display: block;
+  padding: 5px;
+  text-decoration:none;
+  border-radius: 3px;
+  text-align: center;
+}
+.controls>a:hover{
+  background: #7cb5ec;
+  color:white;
 }
 .show-inline{
 	display: inline-block;
@@ -35,9 +65,12 @@
 	width: 100%;
 }
 .info{
+  font-style: italic;
 	color:#333;
 	float: right;
 }
+
+
 
 
 /******* custom range input ********/

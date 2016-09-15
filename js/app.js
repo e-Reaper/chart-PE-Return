@@ -2,15 +2,32 @@ var step = 0;
 var player;
 window.onload = function() {
 	animate();
+    document.getElementById('report-time-span').setAttribute('max',graphData.length);
+    document.getElementById('report-time-span').addEventListener('change',function() {
+        step = this.value;
+        animate();
+    });
 }
 
-function playGraph() {
-	player = setInterval(function(argument) {
+function playGraph(e) {
+    $('.controls .player').hide();
+    $('.controls .pauser').show();
+    player = setInterval(function(argument) {
 		animate();
-	},1000)
+	    step++;
+    },1000)
+}
+
+function pauseGraph(){
+    $('.controls .pauser').hide();
+    $('.controls .player').show();
+    clearInterval(player);
 }
 
 function animate() {
+    if (step==graphData.length) {
+        clearInterval(player);
+    }
 	var data_category = [];
 	var data_pe_return = [];
 	var data_5_year = [];
@@ -24,10 +41,7 @@ function animate() {
 		}
 	}
 	make_graph(data_category,data_5_year,data_pe_return);
-	step++;
-	if (step==graphData.length) {
-		clearInterval(player);
-	}
+    document.getElementById('report-time-span').value = step;
 }
 
 
@@ -46,11 +60,14 @@ function make_graph_1(category,data) {
             text: 'PE'
         },
         xAxis: {
+            min : 0,
+            max : graphData.length,
             categories: category,
             crosshair: true
         },
         yAxis: {
-            min: 0,
+            min: 10,
+            max: 30,
             title: {
                 text: 'PE'
             }
@@ -75,6 +92,9 @@ function make_graph_1(category,data) {
                 animation: false
             }
         },
+        exporting: { 
+            enabled: false 
+        },
         series: [{
             name: 'PE',
             data: data
@@ -92,10 +112,13 @@ function make_graph_2(category,ydata) {
             text: 'RETURN'
         },
         xAxis: {
-            categories : category
+            categories : category,
+            min : 0,
+            max : graphData.length
         },
         yAxis: {
-        	min : 0,
+        	min : -1,
+            max : 45,
             title: {
                 text: 'Return'
             }
@@ -130,7 +153,9 @@ function make_graph_2(category,ydata) {
                 animation: false
             }
         },
-
+        exporting: { 
+            enabled: false 
+        },
         series: [{
             type: 'area',
             name: 'Return',

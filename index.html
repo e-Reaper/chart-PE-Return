@@ -9,6 +9,8 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<!-- download font 'open sans' -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/b17c142e25.js"></script>
+
 
     <!-- download jquery -->
     <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
@@ -34,25 +36,29 @@
 		</div>
 		<div class="action-center">
 			<div class="input-values">
-				<div class="show-inline">
+				<div class="">
 					<h3>NIFTY PE</h3>
 					<input type="text" name="" disabled="true" value="15">
 				</div>
-				<div class="show-inline">
+				<div class="">
 					<h3>5-YEAR RETURN</h3>
 					<input type="text" name="" disabled="true" value="25%">
 				</div>
 			</div>
 			<div class="input-field">
 				<input type="range" name="time-span" id="report-time-span"/>
-				<a href="javascript:void(0)" onclick="playGraph()" style="float:left">
-					<i class="fa fa-play"></i>
-					<i class="fa fa-pause"></i>
-					PLAY
-				</a>
-				<span class="">or</span>
-				<span class="info"> drag the slider</span>
-
+				<div class="controls">
+					<a href="javascript:void(0)" class="player" onclick="playGraph(this)">
+						<i class="fa fa-play"></i><br>
+						PLAY
+					</a>
+					<a href="javascript:void(0)" class="pauser" onclick="pauseGraph(this)">
+						<i class="fa fa-pause"></i><br>
+						PAUSE
+					</a>
+					<span class="">or</span>
+					<span class="info"> drag the slider</span>
+				</div>
 			</div>
 		</div>
 		<div class="report-visual">
