@@ -59,8 +59,10 @@ function animate() {
     }
     $('#pe-value').val(graphData[step].PE);
     $('#return-value').val(graphData[step].f_year);
-    $('#graph-2').highcharts().series[0].addPoint(parseFloat(graphData[step].f_year));
-    $('#graph-1').highcharts().series[0].addPoint(graphData[step].PE);
+    if (graphData[step+60])
+        $('#graph-2').highcharts().series[0].addPoint(parseFloat(graphData[step+60].f_year));
+    if (graphData[step])
+        $('#graph-1').highcharts().series[0].addPoint(graphData[step].PE);
     document.getElementById('report-time-span').value = step;
 }
 
@@ -70,7 +72,7 @@ function make_graph(category,year_ret,pe_ret) {
 	make_graph_2(category,pe_ret);
 }
 
-function make_graph_1(category,data) {
+function make_graph_1(categoryX,data) {
 	$(function () {
     $('#graph-1').highcharts({
         chart: {
@@ -81,8 +83,8 @@ function make_graph_1(category,data) {
         },
         xAxis: {
             min : 0,
-            max : graphData.length,
-            categories: category,
+            max : categoryX.length,
+            categories: categoryX,
             crosshair: true
         },
         yAxis: {
@@ -123,7 +125,8 @@ function make_graph_1(category,data) {
 });
 }
 
-function make_graph_2(category,ydata) {
+function make_graph_2(categoryX,ydata) {
+    var x_Axis_cat = categoryX.slice(60,categoryX.length);
     $('#graph-2').highcharts({
         chart: {
             zoomType: 'x'
@@ -132,9 +135,9 @@ function make_graph_2(category,ydata) {
             text: 'RETURN'
         },
         xAxis: {
-            categories : category,
+            categories : x_Axis_cat,
             min : 0,
-            max : graphData.length
+            max : x_Axis_cat.length
         },
         yAxis: {
         	min : -1,
