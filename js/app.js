@@ -43,7 +43,7 @@ function playGraph(e) {
         audio.play();
         animate();
 	    step++;
-    },2000)
+    },1000)
 }
 
 function pauseGraph(){
