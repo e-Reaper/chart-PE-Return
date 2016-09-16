@@ -15,6 +15,7 @@
 }
 .input-values{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 	width: 60%;
 	margin: 0 auto;
@@ -53,6 +54,15 @@
   background: #7cb5ec;
   color:white;
 }
+.report-visual{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.report-visual>div{
+  width: 50%;
+}
+
 .show-inline{
 	display: inline-block;
 	width: 49%;
@@ -137,3 +147,21 @@ input[type=range]::-ms-thumb {
 YESB0000464
 042791900007032
 */
+
+@media only screen and (max-width: 500px) {
+  .report-visual>div{
+    width: 100%;
+  }
+  .controls>span{
+    width: 100%;
+    text-align: center;
+  }
+  .action-center,.report-heading,.report-visual{
+    width: 100%;
+  }
+  .input-values>div{
+    width: 100%;
+  }
+
+
+}
