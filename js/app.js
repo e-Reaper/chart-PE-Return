@@ -1,21 +1,41 @@
 var step = 0;
 var player;
 window.onload = function() {
-	animate();
+    var category = [];
+    for (var i = 0; i < graphData.length; i++) {
+        category.push(graphData[i].Date);
+    }
+	make_graph(category,[],[]);
     document.getElementById('report-time-span').setAttribute('max',graphData.length);
-    document.getElementById('report-time-span').addEventListener('change',function() {
-        step = this.value;
-        animate();
+    document.getElementById('report-time-span').setAttribute('step',1);
+    document.getElementById('report-time-span').setAttribute('value',0);
+    document.getElementById('report-time-span').addEventListener('input',function(e) {
+        var newStep = this.value;
+        if (newStep > step) {
+            if (newStep-step > 20) {
+                e.stopPropogation();
+            }
+            for (var i = step; i <= newStep; i++) {
+                animate();
+                step++;
+            }
+        }else if (newStep == step) {
+            //do nothing
+        }else{
+            // redraw
+        }
     });
 }
 
 function playGraph(e) {
     $('.controls .player').hide();
     $('.controls .pauser').show();
-    player = setInterval(function(argument) {
-		animate();
+    player = setInterval(function() {
+		var audio = new Audio('./sound/beep-'+ step%2 +'.mp3');
+        audio.play();
+        animate();
 	    step++;
-    },1000)
+    },2000)
 }
 
 function pauseGraph(){
@@ -28,19 +48,8 @@ function animate() {
     if (step==graphData.length) {
         clearInterval(player);
     }
-	var data_category = [];
-	var data_pe_return = [];
-	var data_5_year = [];
-	for(i=0;i<graphData.length;i++){
-		data_category.push(graphData[i].Date);
-		if (i>step) {
-			break;
-		}else{
-			data_pe_return.push(parseFloat(graphData[i].PE));
-			data_5_year.push(parseFloat(graphData[i].f_year));
-		}
-	}
-	make_graph(data_category,data_5_year,data_pe_return);
+    $('#graph-2').highcharts().series[0].addPoint(parseFloat(graphData[step].f_year));
+    $('#graph-1').highcharts().series[0].addPoint(graphData[step].PE);
     document.getElementById('report-time-span').value = step;
 }
 
@@ -89,7 +98,9 @@ function make_graph_1(category,data) {
                 borderWidth: 0
             },
             series: {
-                animation: false
+                animation: {
+                    duration: 2000
+                }
             }
         },
         exporting: { 
@@ -148,9 +159,6 @@ function make_graph_2(category,ydata) {
                     }
                 },
                 threshold: null
-            },
-            series: {
-                animation: false
             }
         },
         exporting: { 

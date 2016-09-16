@@ -55,12 +55,7 @@
 }
 .show-inline{
 	display: inline-block;
-	width: 40%;
-	margin-right:5%;
-}
-.show-inline:nth-child(2){
-	margin-left: 5%;
-	margin-right: 0%;
+	width: 49%;
 }
 .show-inline>div{
 	width: 100%;
