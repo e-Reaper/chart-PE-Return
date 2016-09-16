@@ -6,20 +6,20 @@ window.onload = function() {
         category.push(graphData[i].Date);
     }
 	make_graph(category,[],[]);
-    document.getElementById('report-time-span').setAttribute('max',graphData.length-1);
+    document.getElementById('report-time-span').setAttribute('max',graphData.length-61);
     document.getElementById('report-time-span').setAttribute('step',1);
     document.getElementById('report-time-span').setAttribute('value',0);
     document.getElementById('report-time-span').addEventListener('input',function(e) {
         var newStep = this.value;
         if (newStep > step) {
-            if (newStep-step > 20) {
+            if (newStep-step > 60) {
                 e.stopPropogation();
             }
             for (var i = step; i <= newStep; i++) {
                 animate();
                 step++;
             }
-            if (step >= graphData.length-1)
+            if (step+60 >= graphData.length-1)
                 $('.controls .player').html('<i class="fa fa-play"></i><br>REPLAY');
 
         }else if (newStep == step) {
@@ -32,7 +32,7 @@ window.onload = function() {
 
 function playGraph(e) {
     $('.controls .player').html('<i class="fa fa-play"></i><br>PLAY');
-    if (step == graphData.length) {
+    if (step+60 == graphData.length) {
         step = 0;
         make_graph(category,[],[]);
     }
@@ -53,7 +53,7 @@ function pauseGraph(){
 }
 
 function animate() {
-    if (step>=graphData.length-1) {
+    if (step+60>=graphData.length-1) {
         $('.controls .player').html('<i class="fa fa-play"></i><br>REPLAY');
         clearInterval(player);
     }
@@ -73,6 +73,7 @@ function make_graph(category,year_ret,pe_ret) {
 }
 
 function make_graph_1(categoryX,data) {
+    var x_Axis_cat = categoryX.slice(0,categoryX.length-60);
 	$(function () {
     $('#graph-1').highcharts({
         chart: {
@@ -86,8 +87,8 @@ function make_graph_1(categoryX,data) {
         },
         xAxis: {
             min : 0,
-            max : categoryX.length,
-            categories: categoryX,
+            max : x_Axis_cat.length,
+            categories: x_Axis_cat,
             crosshair: true
         },
         yAxis: {
