@@ -48,6 +48,8 @@ function animate() {
     if (step==graphData.length) {
         clearInterval(player);
     }
+    $('#pe-value').val(graphData[step].PE);
+    $('#return-value').val(graphData[step].f_year);
     $('#graph-2').highcharts().series[0].addPoint(parseFloat(graphData[step].f_year));
     $('#graph-1').highcharts().series[0].addPoint(graphData[step].PE);
     document.getElementById('report-time-span').value = step;
