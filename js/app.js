@@ -88,9 +88,7 @@ function make_graph_1(category,data) {
         yAxis: {
             min: 10,
             max: 30,
-            title: {
-                text: 'PE'
-            }
+            title: false
         },
         legend: {
             enabled: false
@@ -141,9 +139,7 @@ function make_graph_2(category,ydata) {
         yAxis: {
         	min : -1,
             max : 45,
-            title: {
-                text: 'Return'
-            }
+            title: false
         },
         legend: {
             enabled: false
