@@ -20,7 +20,7 @@ window.onload = function() {
                 step++;
             }
             if (step >= graphData.length-1)
-                $('.controls .pauser').html('<i class="fa fa-play"></i><br>REPLAY');
+                $('.controls .player').html('<i class="fa fa-play"></i><br>REPLAY');
 
         }else if (newStep == step) {
             //do nothing
@@ -31,7 +31,7 @@ window.onload = function() {
 }
 
 function playGraph(e) {
-    $('.controls .pauser').html('<i class="fa fa-play"></i><br>PLAY');
+    $('.controls .player').html('<i class="fa fa-play"></i><br>PLAY');
     if (step == graphData.length) {
         step = 0;
         make_graph(category,[],[]);
@@ -54,7 +54,7 @@ function pauseGraph(){
 
 function animate() {
     if (step>=graphData.length-1) {
-        $('.controls .pauser').html('<i class="fa fa-play"></i><br>REPLAY');
+        $('.controls .player').html('<i class="fa fa-play"></i><br>REPLAY');
         clearInterval(player);
     }
     $('#pe-value').val(graphData[step].PE);

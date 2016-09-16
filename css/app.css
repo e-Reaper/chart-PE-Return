@@ -148,7 +148,7 @@ YESB0000464
 042791900007032
 */
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) {
   .report-visual>div{
     width: 100%;
   }
@@ -162,6 +162,8 @@ YESB0000464
   .input-values>div{
     width: 100%;
   }
-
+  .input-values>div input{
+    width: 100%;
+  }
 
 }
