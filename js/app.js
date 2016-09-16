@@ -79,6 +79,9 @@ function make_graph_1(categoryX,data) {
             type: 'column'
         },
         title: {
+            style: {
+                fontSize: '25px'
+            },
             text: 'PE'
         },
         xAxis: {
@@ -132,6 +135,9 @@ function make_graph_2(categoryX,ydata) {
             zoomType: 'x'
         },
         title: {
+            style: {
+                fontSize: '25px'
+            },
             text: 'RETURN'
         },
         xAxis: {
