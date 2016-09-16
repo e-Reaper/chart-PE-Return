@@ -1,12 +1,12 @@
 var step = 0;
 var player;
+var category = [];
 window.onload = function() {
-    var category = [];
     for (var i = 0; i < graphData.length; i++) {
         category.push(graphData[i].Date);
     }
 	make_graph(category,[],[]);
-    document.getElementById('report-time-span').setAttribute('max',graphData.length);
+    document.getElementById('report-time-span').setAttribute('max',graphData.length-1);
     document.getElementById('report-time-span').setAttribute('step',1);
     document.getElementById('report-time-span').setAttribute('value',0);
     document.getElementById('report-time-span').addEventListener('input',function(e) {
@@ -19,6 +19,9 @@ window.onload = function() {
                 animate();
                 step++;
             }
+            if (step >= graphData.length-1)
+                $('.controls .pauser').html('<i class="fa fa-play"></i><br>REPLAY');
+
         }else if (newStep == step) {
             //do nothing
         }else{
@@ -28,6 +31,11 @@ window.onload = function() {
 }
 
 function playGraph(e) {
+    $('.controls .pauser').html('<i class="fa fa-play"></i><br>PLAY');
+    if (step == graphData.length) {
+        step = 0;
+        make_graph(category,[],[]);
+    }
     $('.controls .player').hide();
     $('.controls .pauser').show();
     player = setInterval(function() {
@@ -45,7 +53,8 @@ function pauseGraph(){
 }
 
 function animate() {
-    if (step==graphData.length) {
+    if (step>=graphData.length-1) {
+        $('.controls .pauser').html('<i class="fa fa-play"></i><br>REPLAY');
         clearInterval(player);
     }
     $('#pe-value').val(graphData[step].PE);
