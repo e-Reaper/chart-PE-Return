@@ -57,12 +57,14 @@ function animate() {
         $('.controls .player').html('<i class="fa fa-play"></i><br>REPLAY');
         clearInterval(player);
     }
-    $('#pe-value').val(graphData[step].PE);
-    $('#return-value').val(graphData[step].f_year);
-    if (graphData[step+60])
+    if (graphData[step+60]){
+        $('#return-value').val(graphData[step+60].f_year);
         $('#graph-2').highcharts().series[0].addPoint(parseFloat(graphData[step+60].f_year));
-    if (graphData[step])
+    }
+    if (graphData[step]){
+        $('#pe-value').val(graphData[step].PE);
         $('#graph-1').highcharts().series[0].addPoint(graphData[step].PE);
+    }
     document.getElementById('report-time-span').value = step;
 }
 
