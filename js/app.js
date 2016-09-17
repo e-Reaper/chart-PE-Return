@@ -12,7 +12,7 @@ window.onload = function() {
     document.getElementById('report-time-span').addEventListener('input',function(e) {
         var newStep = this.value;
         if (newStep > step) {
-            if (newStep-step > 60) {
+            if (newStep-step > 100) {
                 e.stopPropogation();
             }
             for (var i = step; i <= newStep; i++) {
