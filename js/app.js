@@ -32,7 +32,7 @@ window.onload = function() {
 
 function playGraph(e) {
     $('.controls .player').html('<i class="fa fa-play"></i><br>PLAY');
-    if (step+60 == graphData.length) {
+    if (step+60 >= graphData.length) {
         step = 0;
         make_graph(category,[],[]);
     }
@@ -56,6 +56,7 @@ function animate() {
     if (step+60>=graphData.length-1) {
         $('.controls .player').html('<i class="fa fa-play"></i><br>REPLAY');
         clearInterval(player);
+        pauseGraph();
     }
     if (graphData[step+60]){
         $('#return-value').val(graphData[step+60].f_year);
@@ -79,7 +80,10 @@ function make_graph_1(categoryX,data) {
 	$(function () {
     $('#graph-1').highcharts({
         chart: {
-            type: 'column'
+            type: 'column',
+            animation: {
+                duration: 1000
+            }
         },
         title: {
             style: {
