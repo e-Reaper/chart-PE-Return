@@ -25,7 +25,12 @@ window.onload = function() {
         }else if (newStep == step) {
             //do nothing
         }else{
-            // redraw
+            for (var i = step-1 ; i >= newStep; i--) {
+                $('#graph-2').highcharts().series[0].points[$('#graph-2').highcharts().series[0].data.length-1].remove(true);
+                $('#graph-1').highcharts().series[0].points[$('#graph-1').highcharts().series[0].data.length-1].remove(true);
+                step--;
+            }            
+
         }
     });
 }
@@ -60,11 +65,11 @@ function animate() {
     }
     if (graphData[step+60]){
         $('#return-value').val(graphData[step+60].f_year);
-        $('#graph-2').highcharts().series[0].addPoint(parseFloat(graphData[step+60].f_year));
+        $('#graph-2').highcharts().series[0].addPoint([step,parseFloat(graphData[step+60].f_year)]);
     }
     if (graphData[step]){
         $('#pe-value').val(graphData[step].PE);
-        $('#graph-1').highcharts().series[0].addPoint(graphData[step].PE);
+        $('#graph-1').highcharts().series[0].addPoint([step,graphData[step].PE]);
     }
     document.getElementById('report-time-span').value = step;
 }
