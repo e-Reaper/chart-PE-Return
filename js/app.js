@@ -29,6 +29,8 @@ window.onload = function() {
                 $('#graph-2').highcharts().series[0].points[$('#graph-2').highcharts().series[0].data.length-1].remove(true);
                 $('#graph-1').highcharts().series[0].points[$('#graph-1').highcharts().series[0].data.length-1].remove(true);
                 step--;
+                $('#return-value').val(graphData[step+60].f_year);
+                $('#pe-value').val(graphData[step].PE);
             }            
 
         }
